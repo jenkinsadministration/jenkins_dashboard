@@ -1,0 +1,30 @@
+{
+  "name": "jenkins_dashboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Javier Hernán Caballero García <https://javiercaballero.info>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "gulp clean && gulp default && gulp build",
+    "serve": "gulp clean && gulp default && gulp watch",
+    "gulp": "gulp default"
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.5",
+    "fs": "^0.0.1-security",
+    "gulp": "^4.0.2",
+    "gulp-batch-replace": "^0.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rev": "^9.0.0",
+    "gulp-rev-delete-original": "^0.2.3",
+    "gulp-rm": "^2.0.0",
+    "gulp-uglify-es": "^1.0.4",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "through2": "^3.0.1",
+    "weathericons": "^2.1.0"
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="application-name" content="JenkinsDashboard"/>
+
+    <title>Jenkins Dashboard</title>
+
+    <meta name="author" content="Javier Hernán Caballero García"/>
+
+    <!-- Template-specific styles -->
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+
+<div id="wrapper">
+    <table id="display">
+        <tbody>
+        <tr>
+            <td id="currently" colspan="2">
+                <!-- Current weather information -->
+                <div id="currentlyWrapper">
+                    <div class="icon"></div>
+                    <div class="desc"></div>
+                    <div class="currentTemp"><span class="temp"></span></div>
+                </div>
+            </td>
+            <td colspan="2">
+                <!-- Current date and time information -->
+                <div>
+                    <div id="time"></div>
+                    <div id="date"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <!-- Upcoming metrics -->
+            <td class="metric" id="metric1">
+                <div class="icon"></div>
+                <div class="desc"></div>
+            </td>
+            <td class="metric" id="metric2">
+                <div class="icon"></div>
+                <div class="desc"></div>
+            </td>
+            <td class="metric" id="metric3">
+                <div class="icon"></div>
+                <div class="desc"></div>
+            </td>
+            <td class="metric" id="metric4">
+                <div class="icon"></div>
+                <div class="desc"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

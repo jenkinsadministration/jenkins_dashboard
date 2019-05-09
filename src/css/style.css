@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Muli');
+
+body {
+    text-align: center;
+    background: gray;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+#wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+#attribution {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#display {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: transparent;
+}
+
+.metric {
+    width: 25%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0 !important;
+    margin: 20px;
+    display: table-cell;
+    height: 200px;
+    position: relative;
+}
+
+.metric .icon {
+    top: -20px;
+    position: relative;
+}
+
+.metric .desc {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.wi {
+    font-size: 12vmin;
+    line-height: 12vmin !important;
+}
+
+#currently {
+    height: 56vh;
+    vertical-align: middle;
+}
+
+#currently .wi {
+    font-size: 18vmin;
+    height: 20vmin;
+    padding: 10px;
+    position: relative;
+    display: block;
+    top: 3vh;
+}
+
+#metricHeading {
+    height: 100px;
+}
+
+#metric {
+    font-size: 15vmin;
+    margin-bottom: 4vmin;
+}
+
+.day {
+    font-size: 3.5vmin;
+    margin-bottom: 1.5vmin;
+}
+
+.desc {
+    font-size: 3.5vmin;
+    margin-top: 2.5vmin;
+    margin-bottom: 0.5vmin;
+}
+
+.highTemp {
+    font-size: 3vmin;
+    width: 50%;
+    float: right;
+}
+
+.lowTemp {
+    font-size: 3vmin;
+    width: 50%;
+    float: left;
+}
+
+.currentTemp {
+    font-size: 3.5vmin;
+}
+
+.temp {
+    font-size: 15vmin;
+}
+
+#currentlyHeading {
+    font-size: 5vmin;
+}
+
+#currently .desc {
+    font-size: 8vmin;
+    margin-bottom: 0.5vmin;
+}
+
+#currently .tvminp {
+    font-size: 2.5vmin;
+}
+
+#time {
+    font-size: 15vmin;
+    text-shadow: 0 0 10px black;
+}
+
+#date {
+    font-size: 5vmin;
+    text-shadow: 0 0 10px black;
+    color: rgb(230, 230, 230);
+}
+
+#currentlyWrapper {
+    display: inline-block;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 4vh;
+}
+
+#currentlyWrapper .icon {
+    height: 20vh;
+}
