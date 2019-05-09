@@ -103,7 +103,7 @@
     /*****************************************************/
     /*************************************************************************/
 
-    function setRandomBackGround() {
+    function setRandomBackground() {
 
         $.getJSON('https://api.unsplash.com/photos/random?client_id=3f2741dd663e59d7d7c0e9290b7184cd257ef8adfe7742e66f3b9c0c335479a9&orientation=landscape', function(data){
 
@@ -198,6 +198,12 @@
         });
     }
 
+    function listeners () {
+        $('#reload_background').on('click', function() {
+            setRandomBackground();
+        });
+    }
+
     // Fallback icons - Do not edit. Icons should be edited in your current skin.
     // Fallback icons are from the weather icons pack on github at https://github.com/erikflowers/weather-icons
     // Position in array corresponds to Yahoo! Weather's condition code, which are commented below in plain English
@@ -210,12 +216,12 @@
     $(function () {
         // Fetch the weather data for right now
         queryOpenWeatherMap();
-        setRandomBackGround();
+        setRandomBackground();
 
         // Query Yahoo! at the requested interval for new weather data
         setInterval(function() {
             queryOpenWeatherMap();
-            // setRandomBackGround();
+            // setRandomBackground();
         }, waitBetweenWeatherQueriesMS);
 
         // Set the current time and date on the clock
@@ -235,6 +241,9 @@
                 $('#date').html(moment().format(formatDate));
             }
         }, 1000);
+
+        listeners();
+
     });
 
 }());

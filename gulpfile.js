@@ -211,7 +211,8 @@ gulp.task('browser-sync', (done) => {
     browserSync.init(['dist/css/*.css', 'dist/js/*.js'], {
         server: {
             baseDir: './dist'
-        }
+        },
+        watchEvents : [ 'change', 'add', 'unlink', 'addDir', 'unlinkDir' ]
     });
     done();
 });

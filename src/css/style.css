@@ -149,3 +149,14 @@ a {
 #currentlyWrapper .icon {
     height: 20vh;
 }
+
+#reload_background {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    width: 100px;
+    height: 100px;
+    content: '';
+}
