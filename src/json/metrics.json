@@ -1,0 +1,22 @@
+{
+  "metrics": [
+    {
+      "name": "Projects",
+      "value": "3",
+      "abbreviate": true,
+      "index": 2
+    },
+    {
+      "name": "Test Executed",
+      "value": "1340",
+      "abbreviate": true,
+      "index": 3
+    },
+    {
+      "name": "Success Percentage",
+      "value": "64%",
+      "abbreviate": false,
+      "index": 4
+    }
+  ]
+}

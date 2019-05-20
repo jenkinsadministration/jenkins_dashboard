@@ -24,8 +24,8 @@ a {
 
 #attribution {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
 }
 
 #display {
@@ -33,10 +33,13 @@ a {
     height: 100%;
     text-align: center;
     background: transparent;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 10px;
 }
 
 .metric {
-    width: 25%;
+    width: 20%;
     background: rgba(0, 0, 0, 0.5);
     padding: 0 !important;
     margin: 20px;
@@ -45,12 +48,14 @@ a {
     position: relative;
 }
 
-.metric .icon {
+.metric .value {
     top: -20px;
+    font-size: 12vmin;
+    line-height: 12vmin !important;
     position: relative;
 }
 
-.metric .desc {
+.metric .name {
     position: absolute;
     bottom: 10px;
     width: 100%;
@@ -89,7 +94,7 @@ a {
     margin-bottom: 1.5vmin;
 }
 
-.desc {
+.desc, .name {
     font-size: 3.5vmin;
     margin-top: 2.5vmin;
     margin-bottom: 0.5vmin;
@@ -159,4 +164,23 @@ a {
     width: 100px;
     height: 100px;
     content: '';
+}
+
+#reload_metrics {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    width: 100px;
+    height: 100px;
+    content: '';
+}
+
+#metric_row {
+
+}
+
+.transparent {
+    background: transparent;
 }

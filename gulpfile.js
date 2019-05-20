@@ -6,6 +6,7 @@ const batchReplace = require('gulp-batch-replace');
 const uglify = require('gulp-uglify-es').default;
 const rm = require('gulp-rm');
 const fs = require('fs');
+const babel = require('gulp-babel');
 
 const browserSync = require('browser-sync');
 const minifyCss = require('gulp-minify-css');
@@ -206,17 +207,6 @@ gulp.task('bs-reload', (done) => {
     done();
 });
 
-/* Prepare Browser-sync for localhost */
-gulp.task('browser-sync', (done) => {
-    browserSync.init(['dist/css/*.css', 'dist/js/*.js'], {
-        server: {
-            baseDir: './dist'
-        },
-        watchEvents : [ 'change', 'add', 'unlink', 'addDir', 'unlinkDir' ]
-    });
-    done();
-});
-
 gulp.task('build', gulp.series('build:img', 'build:css', 'build:js', 'build:html'), (done) => {
     done();
 });
@@ -225,15 +215,16 @@ gulp.task('default', gulp.parallel('img', 'json', 'fonts', 'style', 'script', 'h
     done();
 });
 
-gulp.task('watch', gulp.series('default', 'browser-sync'), () => {
-
-    gulp.watch(['src/css/**/*.css'], gulp.series('style'));
-
-    gulp.watch(['src/js/**/*.js'], gulp.series('script'));
-
-    gulp.watch(['src/images/**/*'], gulp.series('img'));
-
-    gulp.watch(['src/json/**/*'], gulp.series('json'));
-
-    gulp.watch(['src/index.html'], gulp.series('html', 'bs-reload'));
+gulp.task('watch', () => {
+    browserSync.init({
+        server: {
+            baseDir: './dist'
+        }
+    });
+    const watcher = gulp.watch(['src/**/*']);
+    watcher.on('change', gulp.series('default', 'bs-reload'), function(path) {
+        console.log(`File ${path} was changed`);
+    });
 });
+
+

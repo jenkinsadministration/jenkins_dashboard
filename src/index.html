@@ -4,11 +4,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="application-name" content="JenkinsDashboard"/>
-
     <title>Jenkins Dashboard</title>
-
     <meta name="author" content="Javier Hernán Caballero García"/>
-
     <!-- Template-specific styles -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
@@ -16,6 +13,7 @@
 
 <div id="wrapper">
     <button id="reload_background"></button>
+    <button id="reload_metrics"></button>
     <table id="display">
         <tbody>
         <tr>
@@ -24,9 +22,10 @@
                 <div id="currentlyWrapper">
                     <div class="icon"></div>
                     <div class="desc"></div>
-                    <div class="currentTemp"><span class="temp"></span></div>
+                    <div class="currentTemp"></div>
                 </div>
             </td>
+            <td></td>
             <td colspan="2">
                 <!-- Current date and time information -->
                 <div>
@@ -35,23 +34,26 @@
                 </div>
             </td>
         </tr>
-        <tr>
-            <!-- Upcoming metrics -->
-            <td class="metric" id="metric1">
-                <div class="icon"></div>
-                <div class="desc"></div>
+        <tr id="metric_row">
+            <td class="metric transparent" id="metric_1">
+                <div class="value"></div>
+                <div class="name"></div>
             </td>
-            <td class="metric" id="metric2">
-                <div class="icon"></div>
-                <div class="desc"></div>
+            <td class="metric transparent" id="metric_2">
+                <div class="value"></div>
+                <div class="name"></div>
             </td>
-            <td class="metric" id="metric3">
-                <div class="icon"></div>
-                <div class="desc"></div>
+            <td class="metric transparent" id="metric_3">
+                <div class="value"></div>
+                <div class="name"></div>
             </td>
-            <td class="metric" id="metric4">
-                <div class="icon"></div>
-                <div class="desc"></div>
+            <td class="metric transparent" id="metric_4">
+                <div class="value"></div>
+                <div class="name"></div>
+            </td>
+            <td class="metric transparent" id="metric_5">
+                <div class="value"></div>
+                <div class="name"></div>
             </td>
         </tr>
         </tbody>

@@ -11,9 +11,13 @@
     "gulp": "gulp default"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.5",
     "fs": "^0.0.1-security",
     "gulp": "^4.0.2",
+    "gulp-babel": "^7.0.1",
+    "gulp-batch": "^1.0.5",
     "gulp-batch-replace": "^0.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^5.0.1",
@@ -22,6 +26,7 @@
     "gulp-rev-delete-original": "^0.2.3",
     "gulp-rm": "^2.0.0",
     "gulp-uglify-es": "^1.0.4",
+    "gulp-watch": "^5.0.1",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "through2": "^3.0.1",

@@ -1,20 +1,11 @@
-(function() {
+$(function() {
+    const METRICS_URL = 'https://us-central1-jenkinsmetrics.cloudfunctions.net/api/metrics';
     'use strict';
-    /*global $, moment*/
-
-    /*************************************************************************/
-    /*****************************************************/
-    /*********************************/
-    // USER EDITABLE LINES - Change these to match your location and preferences!
-
     // Your Openweathermap city code
     // Find your id code at http://bulk.openweathermap.org/sample/
     let zip_code = '3441575';
-    let api_key = 'ba4f4378863a0702b94a0917a51ffe8f';
+    let api_key = 'b6907d289e10d714a6e88b30761fae22';
 
-    // Your temperature unit measurement
-    // This bit is simple, 'metric' for Celcius, and 'imperial' for Fahrenheit
-    let metric = 'metric';
     const icons = {
         '01d': '<i class="wi wi-day-sunny"></i>',			//sunny,
         '01n': '<i class="wi wi-night-clear"></i>',		//clear (night)
@@ -91,25 +82,47 @@
     };
 
     // Format for date and time
-    let formatTime = 'h:mm:ss a';
+    let formatTime = 'hh:mm';
     let formatDate = 'dddd, MMMM Do YYYY';
 
     // Yahoo! query interval (milliseconds)
     // Default is every 15 minutes. Be reasonable. Don't query Yahoo every 500ms.
     let waitBetweenWeatherQueriesMS = 900000;
 
-    // You're done!
-    /*********************************/
-    /*****************************************************/
-    /*************************************************************************/
-
     function setRandomBackground() {
 
-        $.getJSON('https://api.unsplash.com/photos/random?client_id=3f2741dd663e59d7d7c0e9290b7184cd257ef8adfe7742e66f3b9c0c335479a9&orientation=landscape', function(data){
-
+        $.getJSON('https://api.unsplash.com/photos/random?client_id=3f2741dd663e59d7d7c0e9290b7184cd257ef8adfe7742e66f3b9c0c335479a9&orientation=landscape', function (data) {
             $('#wrapper').css('background-image', 'url("' + data.urls.full + '")')
         });
 
+    }
+
+    function getMetricData() {
+        $.getJSON(METRICS_URL, function(data){
+            $('.metric').addClass('transparent');
+            $.each(data['metrics'], (_, item) => {
+                const metric_html_container = $('#metric_' + item['index']);
+                metric_html_container.find('.name').text(item['name']);
+                if (item['abbreviate']) {
+                    metric_html_container.find('.value').text(abbreviate_number(parseInt(item['value'])), 0);
+                } else {
+                    metric_html_container.find('.value').text(item['value']);
+                }
+                metric_html_container.removeClass('transparent');
+            });
+        });
+    }
+
+     function abbreviate_number(num, fixed) {
+        if (num === null) { return null; } // terminate early
+        if (num === 0) { return '0'; } // terminate early
+        fixed = (!fixed || fixed < 0) ? 0 : fixed; // number of decimal places to show
+        var b = (num).toPrecision(2).split("e"), // get power
+            k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
+            c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3) ).toFixed(1 + fixed), // divide by power
+            d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
+            e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
+        return e;
     }
 
     function resolveTemp(temp) {
@@ -153,54 +166,22 @@
     function queryOpenWeatherMap() {
         $.ajax({
             type: 'GET',
-            url: 'https://openweathermap.org/data/2.5/weather/?appid=b6907d289e10d714a6e88b30761fae22&id=3441575&units=metric',
+            url: 'https://openweathermap.org/data/2.5/weather/?appid=' + api_key + '&id=' + zip_code + '&units=metric',
             dataType: 'json'
         }).done(function (result) {
             // Drill down into the returned data to find the relevant weather information
             fillCurrently(result);
             fillMetric(0, result);
         });
-
-        $.ajax({
-            type: 'GET',
-            url: 'https://openweathermap.org/data/2.5/forecast/?appid=b6907d289e10d714a6e88b30761fae22&id=3441575&units=metric',
-            dataType: 'json'
-        }).done(function (result) {
-            // Drill down into the returned data to find the relevant weather information
-            result = result.list;
-            let fill = 1;
-            let count = 0;
-            for( let res of result){
-                // find tomorrow day
-                if(res.dt_txt.indexOf('00:00:00') > 0){
-                    let low = 200.0;
-                    let high = -200.0;
-                    for(let i=0; i<8; i++){
-                        if(i+count >= result.length){
-                            continue;
-                        }
-                        if(result[count+i].main.temp_max > high){
-                            high = result[count+i].main.temp_max;
-                        }
-                        if(result[count+i].main.temp_min < low){
-                            low = result[count+i].main.temp_min;
-                        }
-                    }
-                    let res_copy = result[Math.min(count + 4, count)]; // 3pm or last possible
-                    res_copy.main.temp_max = (high>-200?high:res_copy.main.temp_max);
-                    res_copy.main.temp_min = (low<200?low:res_copy.main.temp_min);
-                    fillMetric(fill, res);
-                    fill++;
-
-                    count++;
-                }
-            }
-        });
     }
 
     function listeners () {
         $('#reload_background').on('click', function() {
             setRandomBackground();
+        });
+        $('#reload_metrics').on('click', function() {
+            getMetricData()();
+            getMetricData()();
         });
     }
 
@@ -217,6 +198,7 @@
         // Fetch the weather data for right now
         queryOpenWeatherMap();
         setRandomBackground();
+        getMetricData();
 
         // Query Yahoo! at the requested interval for new weather data
         setInterval(function() {
